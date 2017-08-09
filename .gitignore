@@ -1,6 +1,9 @@
 #Inntellij IDEA folder
 .idea/
 
+#Inntellij IDEA classes folder
+classes/
+
 #File of IDEA
 *.iml
 
