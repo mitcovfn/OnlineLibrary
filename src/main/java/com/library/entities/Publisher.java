@@ -1,5 +1,6 @@
 package com.library.entities;
 
+
 public class Publisher {
     private long id;
     private String name;

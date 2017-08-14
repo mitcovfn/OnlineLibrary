@@ -4,9 +4,8 @@
     "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
 
-    <class name="com.library.entities.Author" table="author" schema="library">
+    <class name="com.library.entities.Genre" table="genre" schema="" catalog="library">
         <id name="id" column="id"/>
-        <property name="fio" column="fio"/>
-        <property name="birthday" column="birthday"/>
+        <property name="name" column="name"/>
     </class>
 </hibernate-mapping>

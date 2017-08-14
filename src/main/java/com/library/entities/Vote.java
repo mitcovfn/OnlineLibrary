@@ -1,5 +1,6 @@
 package com.library.entities;
 
+
 public class Vote {
     private long id;
     private Integer value;
@@ -45,10 +46,10 @@ public class Vote {
 
         Vote vote = (Vote) o;
 
-        if (id != vote.id) return false;
         if (bookId != vote.bookId) return false;
-        if (value != null ? !value.equals(vote.value) : vote.value != null) return false;
+        if (id != vote.id) return false;
         if (username != null ? !username.equals(vote.username) : vote.username != null) return false;
+        if (value != null ? !value.equals(vote.value) : vote.value != null) return false;
 
         return true;
     }

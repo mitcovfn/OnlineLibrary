@@ -2,6 +2,7 @@ package com.library.entities;
 
 import java.util.Arrays;
 
+
 public class Book {
     private long id;
     private String name;
@@ -128,17 +129,17 @@ public class Book {
 
         Book book = (Book) o;
 
+        if (authorId != book.authorId) return false;
+        if (genreId != book.genreId) return false;
         if (id != book.id) return false;
         if (pageCount != book.pageCount) return false;
-        if (genreId != book.genreId) return false;
-        if (authorId != book.authorId) return false;
         if (publishYear != book.publishYear) return false;
         if (publisherId != book.publisherId) return false;
-        if (name != null ? !name.equals(book.name) : book.name != null) return false;
         if (!Arrays.equals(content, book.content)) return false;
-        if (isbn != null ? !isbn.equals(book.isbn) : book.isbn != null) return false;
-        if (!Arrays.equals(image, book.image)) return false;
         if (descr != null ? !descr.equals(book.descr) : book.descr != null) return false;
+        if (!Arrays.equals(image, book.image)) return false;
+        if (isbn != null ? !isbn.equals(book.isbn) : book.isbn != null) return false;
+        if (name != null ? !name.equals(book.name) : book.name != null) return false;
         if (rating != null ? !rating.equals(book.rating) : book.rating != null) return false;
         if (voteCount != null ? !voteCount.equals(book.voteCount) : book.voteCount != null) return false;
 
@@ -149,14 +150,14 @@ public class Book {
     public int hashCode() {
         int result = (int) (id ^ (id >>> 32));
         result = 31 * result + (name != null ? name.hashCode() : 0);
-        result = 31 * result + Arrays.hashCode(content);
+        result = 31 * result + (content != null ? Arrays.hashCode(content) : 0);
         result = 31 * result + pageCount;
         result = 31 * result + (isbn != null ? isbn.hashCode() : 0);
         result = 31 * result + (int) (genreId ^ (genreId >>> 32));
         result = 31 * result + (int) (authorId ^ (authorId >>> 32));
         result = 31 * result + publishYear;
         result = 31 * result + (int) (publisherId ^ (publisherId >>> 32));
-        result = 31 * result + Arrays.hashCode(image);
+        result = 31 * result + (image != null ? Arrays.hashCode(image) : 0);
         result = 31 * result + (descr != null ? descr.hashCode() : 0);
         result = 31 * result + (rating != null ? rating.hashCode() : 0);
         result = 31 * result + (voteCount != null ? voteCount.hashCode() : 0);
