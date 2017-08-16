@@ -4,8 +4,7 @@
     "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
 
-    <class name="com.library.entities.Publisher" table="publisher" schema=""
-           catalog="ibrary">
+    <class name="com.library.entities.Publisher" table="publisher" schema="library">
         <id name="id" column="id"/>
         <property name="name" column="name"/>
     </class>
