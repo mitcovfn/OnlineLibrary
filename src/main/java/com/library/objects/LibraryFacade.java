@@ -11,18 +11,23 @@ import java.util.List;
 public class LibraryFacade {
 
 
+    @Autowired
     private BookDAO bookDAO;
 
     @Autowired
-    public void setBookDAO(BookDAO bookDAO) {
-        this.bookDAO = bookDAO;
-        books = bookDAO.getBooks();
-    }
+    private SearchCriteria searchCriteria;
 
     private List<Book> books;
 
 
     public List<Book> getBooks() {
+        if (books == null){
+            books = bookDAO.getBooks();
+        }
         return books;
+    }
+
+    public void searchBooksByLetter() {
+        books = bookDAO.getBooks(searchCriteria.getLetter());
     }
 }
