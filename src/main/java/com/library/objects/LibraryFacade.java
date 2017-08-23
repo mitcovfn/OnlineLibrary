@@ -1,13 +1,16 @@
 package com.library.objects;
 
 import com.library.dao.interfaces.BookDAO;
+import com.library.entities.Author;
 import com.library.entities.Book;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
 
 @Component
+@Scope("singleton")
 public class LibraryFacade {
 
 
@@ -33,5 +36,18 @@ public class LibraryFacade {
 
     public void searchBooksByGenre() {
         books = bookDAO.getBooks(searchCriteria.getGenre());
+    }
+
+    public void searchBooksByText() {
+
+        switch (searchCriteria.getSearchType()){
+            case TITLE:
+                books = bookDAO.getBooks(searchCriteria.getText());
+                break;
+            case AUTHOR:
+                books = bookDAO.getBooks(new Author(searchCriteria.getText()));
+                break;
+        }
+
     }
 }
