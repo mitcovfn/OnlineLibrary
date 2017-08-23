@@ -59,7 +59,7 @@ public class BookDAOImpl implements BookDAO {
 
     @Transactional
     public List<Book> getBooks(Genre genre) {
-        List<Book> books = createBookList(createBookCriteria().add(Restrictions.ilike("author.fio", genre.getName(), MatchMode.ANYWHERE)));
+        List<Book> books = createBookList(createBookCriteria().add(Restrictions.eq("genre.id", genre.getId())));
         return books;
     }
 
@@ -76,11 +76,13 @@ public class BookDAOImpl implements BookDAO {
         return bookListCriteria;
     }
 
+
     private void createAliases(DetachedCriteria criteria) {
         criteria.createAlias("b.author", "author");
         criteria.createAlias("b.genre", "genre");
         criteria.createAlias("b.publisher", "publisher");
     }
+
 
     private List<Book> createBookList(DetachedCriteria bookListCriteria) {
         Criteria criteria = bookListCriteria.getExecutableCriteria(sessionFactory.getCurrentSession());

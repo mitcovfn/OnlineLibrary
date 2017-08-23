@@ -30,4 +30,8 @@ public class LibraryFacade {
     public void searchBooksByLetter() {
         books = bookDAO.getBooks(searchCriteria.getLetter());
     }
+
+    public void searchBooksByGenre() {
+        books = bookDAO.getBooks(searchCriteria.getGenre());
+    }
 }

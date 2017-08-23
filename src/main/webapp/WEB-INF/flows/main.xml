@@ -7,6 +7,10 @@
         <transition on="searchByLetter">
             <evaluate expression="libraryFacade.searchBooksByLetter()" />
         </transition>
+
+        <transition on="searchByGenre">
+            <evaluate expression="libraryFacade.searchBooksByGenre()" />
+        </transition>
     </view-state>
 
 </flow>
