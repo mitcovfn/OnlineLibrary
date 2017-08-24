@@ -58,12 +58,16 @@
                                         </div>
 
                                         <div class="clear">
-                                        <h:outputLink styleClass="mr" target="_blank">
+                                        <h:outputLink styleClass="mr" value="#{request.contextPath}/PdfContent" target="_blank">
                                                 <p class="read">#{msg.read}</p>
+                                                <f:param name="id" value="#{b.id}"/>
+                                                <f:param name="save" value="false"/>
                                         </h:outputLink>
 
-                                        <h:outputLink styleClass="mr" target="_blank">
+                                        <h:outputLink styleClass="mr" value="#{request.contextPath}/PdfContent" target="_blank">
                                                 <p class="download">#{msg.download}</p>
+                                                <f:param name="filename" value="#{b.name}"/>
+                                                <f:param name="save" value="true"/>
                                         </h:outputLink>
 
                                         <p:commandLink styleClass="mr" title="#{msg.edit_book}">
