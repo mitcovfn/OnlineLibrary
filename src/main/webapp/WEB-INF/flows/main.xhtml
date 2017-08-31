@@ -6,7 +6,8 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:p="http://primefaces.org/ui"
-        >
+      xmlns:security="http://www.springframework.org/security/tags"
+>
 <ui:composition template="/WEB-INF/templates/library.xhtml">
 
         <ui:define name="title">
@@ -70,13 +71,14 @@
                                                 <f:param name="save" value="true"/>
                                         </h:outputLink>
 
-                                        <p:commandLink styleClass="mr" title="#{msg.edit_book}">
-                                                <p class="edit">#{msg.edit}</p>
-                                        </p:commandLink>
 
-                                        <p:commandLink styleClass="delete-button" title="#{msg.delete_book}" type="button">
-                                                <p class="delete">#{msg.delete}</p>
-                                        </p:commandLink>
+                                                <p:commandLink styleClass="mr" title="#{msg.edit_book}" rendered="#{facesContext.externalContext.isUserInRole('ROLE_ADMIN')}">
+                                                        <p class="edit">#{msg.edit}</p>
+                                                </p:commandLink>
+                                                <p:commandLink styleClass="delete-button" title="#{msg.delete_book}" type="button" rendered="#{facesContext.externalContext.isUserInRole('ROLE_ADMIN')}">
+                                                        <p class="delete">#{msg.delete}</p>
+                                                </p:commandLink>
+
 
                                         </div>
                                 </div>
@@ -94,7 +96,7 @@
 
                         <h1><p:outputLabel id="booksCount" value="#{msg.book_count}:  #{libraryFacade.books.size()}" /></h1>
 
-                        <h:form id="add-action">
+                        <h:form id="add-action" rendered="#{facesContext.externalContext.isUserInRole('ROLE_ADMIN')}">
                                 <p:commandLink >
                                         <h:outputText value="#{msg.add_book}" title="#{msg.add_book}"/>
                                 </p:commandLink>

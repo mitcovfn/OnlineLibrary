@@ -25,7 +25,10 @@
             <security:user-service>
                 <security:user name="user" password="user" authorities="ROLE_USER" />
                 <security:user name="admin" password="admin" authorities="ROLE_USER, ROLE_ADMIN" />
+                <security:user name="x" password="x" authorities="ROLE_X" />
             </security:user-service>
         </security:authentication-provider>
     </security:authentication-manager>
+
+
 </beans>
