@@ -26,7 +26,7 @@
         <div class="authorization">
 
             <h:panelGroup layout="block" styleClass="lg" id="divLogo">
-                <h:graphicImage library="images/ru" name="logo.png"/>
+                <h:graphicImage name="images/ru/logo.png"/>
             </h:panelGroup>
 
 
@@ -34,29 +34,16 @@
 
             <div class="clear"/>
 
-
-            <form class="login_form" id="formLogin" action="#{request.contextPath}/app/checkuser" method='POST'>
-
-                <p:inputText id="username" value="#{user.username}" required="true" styleClass="aut-text"/>
-
-                <p:password id="password" value="#{user.password}" redisplay="true" required="true"
-                            styleClass="aut-text"/>
-
-
-                <c:if test="${not empty param.login_failed}">
-                    <div class="error">
-                        Login failed
-                    </div>
-                </c:if>
-
-
-                <div class="div-login-button">
-                    <p:panelGrid columns="3" columnClasses="col, col, col" styleClass="panel-login">
-                        <p:commandButton id="btnLogin" value="Login" type="submit" styleClass="login_button"/>
-                    </p:panelGrid>
-                </div>
-
-
+            <form action="${request.contextPath}/app/checkuser" method="POST">
+                <input type="text" name="username" class="aut-text"/><br/><br/>
+                <input type="password" name="password" class="aut-text"/> <br/><br/>
+                    <c:if test="${not empty param.login_failed}">
+                        <div class="error">
+                            Login failed
+                        </div>
+                    </c:if>
+                <input type="submit" value="Login" class="login_button"/>
+                <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
             </form>
 
 

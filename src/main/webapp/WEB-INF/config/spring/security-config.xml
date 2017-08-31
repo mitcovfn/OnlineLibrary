@@ -4,12 +4,17 @@
        xmlns:security="http://www.springframework.org/schema/security"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security.xsd">
 
+    <security:http pattern="resources/css/**" security="none"/>
+    <security:http pattern="resources/images/**" security="none"/>
+    <security:http pattern="resources/js/**" security="none"/>
+    <security:http pattern="WEB-INF/locales/**" security="none"/>
     <security:http>
         <security:intercept-url pattern="/app/main" access="hasRole('USER')" />
         <security:form-login
                 login-page="/app/login"
                 login-processing-url="/app/checkuser"
                 default-target-url="/app/main"
+                authentication-failure-url="/app/login?login_failed=1"
                 username-parameter="username"
                 password-parameter="password"/>
         <security:logout logout-success-url="/app/login" logout-url="/app/logout" />

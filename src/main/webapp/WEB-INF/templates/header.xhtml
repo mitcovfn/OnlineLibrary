@@ -26,9 +26,11 @@
 
             <div class="aut">
                 <p>username</p>
-                <h:form>
-                    <h:commandLink value="${msg.exit}"/>
-                </h:form>
+                <form action="${request.contextPath}/app/logout" method="post">
+                    <input type="submit" value="${msg.exit}" class="exitButton"/>
+                    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+                </form>
+
             </div>
 
         </div>
