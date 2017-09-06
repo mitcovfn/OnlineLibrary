@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:security="http://www.springframework.org/security/tags"
+>
+<ui:composition template="/WEB-INF/templates/library.xhtml">
+
+    <ui:define name="title">
+        #{msg.book_list}
+    </ui:define>
+
+
+    <ui:define name="books_count">
+
+        <div class="box-sh">
+
+            <h:form id="formEditBook"  >
+                <p:panelGrid columns="1" columnClasses="col1" styleClass="edit_book_table" >
+
+                    <p:panel>
+
+                        <p:panelGrid id="bookDetails" columns="2" >
+                            <p:outputLabel value="#{msg.book_name}:" styleClass="edit-title"/>
+
+
+                            <p:inputText id="inputBookName"   required="true" requiredMessage="#{msg.required_field}" size="60"/>
+
+
+                            <p:outputLabel value="#{msg.author_name}:" styleClass="edit-title"/>
+                            <h:selectOneMenu >
+                                <f:selectItems value="#{authorDAOImpl.authors}" var="a" itemValue="${a.id}"/>
+                            </h:selectOneMenu>
+
+
+                            <p:outputLabel value="#{msg.genre}:" styleClass="edit-title"/>
+                            <h:selectOneMenu>
+                                <f:selectItems value="#{genreDAOImpl.genres}" var="g" itemValue="${g.id}"/>
+                            </h:selectOneMenu>
+
+
+                            <p:outputLabel value="#{msg.publisher}:" styleClass="edit-title"/>
+                            <h:selectOneMenu >
+                                <f:selectItems value="#{publisherDAOImpl.publishers}" var="p" itemValue="${p.id}"/>
+                            </h:selectOneMenu>
+
+
+                            <p:outputLabel value="#{msg.publish_year}:" styleClass="edit-title"/>
+                            <p:inputText id="inputPublishYear" required="true"/>
+
+
+                            <p:outputLabel value="#{msg.isbn}:" styleClass="edit-title"/>
+                            <p:inputText id="inputIsbn"  required="true"/>
+
+
+                            <p:outputLabel value="#{msg.page_count}:" styleClass="edit-title"/>
+                            <p:inputText id="inputPageCount"  required="true" />
+
+                            <p:outputLabel value="#{msg.text}:" styleClass="edit-title"/>
+                            <h:form enctype="multipart/form-data" id="formUploadPdf">
+                                <p:fileUpload  id="pdfUpload" label="#{msg.load_pdf}"  allowTypes="/(\.|\/)(pdf)$/" multiple="false" auto="true" styleClass="pdf-upload"/>
+                            </h:form>
+
+                            <p:outputLabel value="#{msg.img}:" styleClass="edit-title"/>
+                            <h:form enctype="multipart/form-data" id="formUploadImage" >
+                                <p:fileUpload id="imageUpload" label="#{msg.load}" allowTypes="/(\.|\/)(gif|jpe?g|png)$/" multiple="false" auto="true"/>
+                            </h:form>
+
+                            <p:outputLabel value="#{msg.descr}:" styleClass="edit-title"/>
+                            <p:panel styleClass="descr-text">
+                                <p:inputTextarea id="inputDescr" value="" cols="60" rows="20" maxlength="1500" counter="counter" counterTemplate="#{msg.letters_left} {0}" autoResize="false"/>
+                                <h:outputText id="counter" />
+                            </p:panel>
+
+
+                            <f:facet name="footer">
+
+                                <p:commandButton id="saveButton" styleClass="button-update" value="#{msg.save}" icon="ui-icon-check"  >
+                                </p:commandButton>
+
+                            </f:facet>
+
+                        </p:panelGrid>
+
+                    </p:panel>
+
+
+                </p:panelGrid>
+
+
+
+
+            </h:form>
+
+        </div>
+
+    </ui:define>
+
+</ui:composition>
+</html>
